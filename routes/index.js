@@ -79,7 +79,7 @@ router.post('/', function(req, res, next) {
                     "text": "Sent message to " + channel + ' as ' + username
                 });
             } else {
-                return res.status(200);
+                return res.status(200).end();
             }
        }
 
