@@ -40,9 +40,9 @@ router.post('/', function(req, res, next) {
     var message = parts[4];
 
     if (_.indexOf(users, user) === -1){
-        console.log('user ' + user_name + ' unauthorized');
+        console.log('user ' + user + ' unauthorized');
     } else {
-        console.log('user ' + user_name + ' authorized');
+        console.log('user ' + user + ' authorized');
     }
 
     var doc = {
