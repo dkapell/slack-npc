@@ -73,7 +73,7 @@ router.post('/', function(req, res, next) {
                 "text": "Error sending message: " + err
             });
        } else {
-            if (response)
+            if (response){
                 return res.json({
                     "response_type": "ephemeral",
                     "text": "Sent message to " + channel + ' as ' + username
