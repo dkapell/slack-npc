@@ -7,7 +7,12 @@ var fs = require('fs');
 var router = express.Router();
 
 var TOKEN = process.env.INCOMING_SLACK_TOKEN;
+
 var slack = new Slack(process.env.INCOMING_SLACK_WEBHOOK);
+
+
+var userlist = JSON.parse(fs.readFileSync(__dirname + '/../data/users.json'));
+var avatarlist = JSON.parse(fs.readFileSync(__dirname + '/../data/avatars.json'));
 
 /* GET home page. */
 router.post('/', function(req, res, next) {
@@ -34,11 +39,25 @@ router.post('/', function(req, res, next) {
     var user = parts[3];
     var message = parts[4];
 
-    slack.notify({
+    if (_.indexOf(userlist, user) === -1){
+        console.log('user ' + user + ' unauthorized');
+    }
+
+    var doc = {
         text: message,
         username: user,
         channel: channel
-    }, function(err){
+    };
+
+    if (_.has(avatars, username)){
+        if (avatars[username].type ==="url" ){
+            doc.icon_url = avatars[username].path;
+        } else if (avatars[username].type ==="emoji" ){
+            doc.icon_emoji = avatars[username].icon;
+        }
+    }
+
+    slack.notify(doc, function(err){
         if (err){
            return res.json({
                 "response_type": "ephemeral",

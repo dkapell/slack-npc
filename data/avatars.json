@@ -1,0 +1,4 @@
+{
+    "Test User": {"type": "url", "path": "http://weknowyourdreams.com/images/cat/cat-02.jpg" },
+    "Test User 2": {"type": "emoji", "icon": ":thumbsup:"}
+}
