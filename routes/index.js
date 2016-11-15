@@ -22,7 +22,7 @@ router.post('/', function(req, res, next) {
         });
     }
 
-    var parts = text.match(/([@#][^\s]+)\s+(['"]?)(.+?)\2\s+(.+))/);
+    var parts = text.match(/([@#][^\s]+)\s+(['"]?)(.+?)\2\s+(.+)/);
     if (! parts){
         return req.json({
             "response_type": "ephemeral",
