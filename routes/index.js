@@ -41,18 +41,21 @@ router.post('/', function(req, res, next) {
         });
     }
 
-    var channel = parts[1].trim();
+    var channel = parts[1];
     var username = parts[3];
     var message = parts[4];
 
-    if (channel === ''){
+    var response = true;
+
+    if (!channel){
         channel = req.body.channel_name;
+        response = false;
     }
 
     var doc = {
         text: message,
         username: username,
-        channel: channel
+        channel: channel.trim()
     };
 
     if (_.has(avatars, username)){
@@ -70,10 +73,14 @@ router.post('/', function(req, res, next) {
                 "text": "Error sending message: " + err
             });
        } else {
-            return res.json({
-                "response_type": "ephemeral",
-                "text": "Sent message to " + channel + ' as ' + username
-            });
+            if (response)
+                return res.json({
+                    "response_type": "ephemeral",
+                    "text": "Sent message to " + channel + ' as ' + username
+                });
+            } else {
+                return res.json({});
+            }
        }
 
     });
