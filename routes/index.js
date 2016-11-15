@@ -18,7 +18,7 @@ var avatars = JSON.parse(fs.readFileSync(__dirname + '/../data/avatars.json'));
 router.post('/', function(req, res, next) {
     var text = req.body.text;
     var token = req.body.token;
-    var user_name = req.body.user_name;
+    var user = req.body.user_name;
 
     if (token !== TOKEN){
         return res.json({
@@ -36,10 +36,10 @@ router.post('/', function(req, res, next) {
     }
 
     var channel = parts[1];
-    var user = parts[3];
+    var username = parts[3];
     var message = parts[4];
 
-    if (_.indexOf(users, user_name) === -1){
+    if (_.indexOf(users, user) === -1){
         console.log('user ' + user_name + ' unauthorized');
     } else {
         console.log('user ' + user_name + ' authorized');
@@ -47,7 +47,7 @@ router.post('/', function(req, res, next) {
 
     var doc = {
         text: message,
-        username: user,
+        username: username,
         channel: channel
     };
 
@@ -68,7 +68,7 @@ router.post('/', function(req, res, next) {
        } else {
             return res.json({
                 "response_type": "ephemeral",
-                "text": "Sent message to " + channel + ' as ' + user
+                "text": "Sent message to " + channel + ' as ' + username
             });
        }
 
