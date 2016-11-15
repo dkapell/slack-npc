@@ -27,7 +27,13 @@ router.post('/', function(req, res, next) {
         });
     }
 
-    var parts = text.match(/([@#][^\s]+)\s+(['"]?)(.+?)\2\s+(.+)/);
+    if (_.indexOf(users, user) === -1){
+        console.log('user ' + user + ' unauthorized');
+    } else {
+        console.log('user ' + user + ' authorized');
+    }
+
+    var parts = text.match(/([@#][^\s]+\s+)?(['"]?)(.+?)\2\s+(.+)/);
     if (! parts){
         return res.json({
             "response_type": "ephemeral",
@@ -35,14 +41,12 @@ router.post('/', function(req, res, next) {
         });
     }
 
-    var channel = parts[1];
+    var channel = parts[1].trim();
     var username = parts[3];
     var message = parts[4];
 
-    if (_.indexOf(users, user) === -1){
-        console.log('user ' + user + ' unauthorized');
-    } else {
-        console.log('user ' + user + ' authorized');
+    if (channel === ''){
+        channel = req.body.channel_name;
     }
 
     var doc = {
