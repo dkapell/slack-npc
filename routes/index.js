@@ -16,7 +16,7 @@ router.post('/', function(req, res, next) {
     var user_name = req.body.user_name;
 
     if (token !== TOKEN){
-        return req.json({
+        return res.json({
             "response_type": "ephemeral",
             "text": "Invalid Command Token"
         });
@@ -24,7 +24,7 @@ router.post('/', function(req, res, next) {
 
     var parts = text.match(/([@#][^\s]+)\s+(['"]?)(.+?)\2\s+(.+)/);
     if (! parts){
-        return req.json({
+        return res.json({
             "response_type": "ephemeral",
             "text": "Failed; message should be like: /npc #channel NPCName hey what's up?"
         });
@@ -40,12 +40,12 @@ router.post('/', function(req, res, next) {
         channel: channel
     }, function(err){
         if (err){
-           return req.json({
+           return res.json({
                 "response_type": "ephemeral",
                 "text": "Error sending message: " + err
             });
        } else {
-            return req.json({
+            return res.json({
                 "response_type": "ephemeral",
                 "text": "Sent message to " + channel + ' as ' + user
             });
