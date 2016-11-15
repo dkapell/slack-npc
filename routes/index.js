@@ -33,6 +33,13 @@ router.post('/', function(req, res, next) {
         console.log('user ' + user + ' authorized');
     }
 
+    if (!text){
+        return res.json({
+            "response_type": "ephemeral",
+            "text": "I know about these NPCs: " + _.keys(avatars).join(', ')
+        });
+    }
+
     var parts = text.match(/([@#][^\s]+\s+)?(['"]?)(.+?)\2\s+(.+)/);
     if (! parts){
         return res.json({
