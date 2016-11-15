@@ -11,8 +11,8 @@ var TOKEN = process.env.INCOMING_SLACK_TOKEN;
 var slack = new Slack(process.env.INCOMING_SLACK_WEBHOOK);
 
 
-var userlist = JSON.parse(fs.readFileSync(__dirname + '/../data/users.json'));
-var avatarlist = JSON.parse(fs.readFileSync(__dirname + '/../data/avatars.json'));
+var users = JSON.parse(fs.readFileSync(__dirname + '/../data/users.json'));
+var avatars = JSON.parse(fs.readFileSync(__dirname + '/../data/avatars.json'));
 
 /* GET home page. */
 router.post('/', function(req, res, next) {
@@ -39,8 +39,10 @@ router.post('/', function(req, res, next) {
     var user = parts[3];
     var message = parts[4];
 
-    if (_.indexOf(userlist, user) === -1){
-        console.log('user ' + user + ' unauthorized');
+    if (_.indexOf(users, user_name) === -1){
+        console.log('user ' + user_name + ' unauthorized');
+    } else {
+        console.log('user ' + user_name + ' authorized');
     }
 
     var doc = {
