@@ -51,8 +51,8 @@ router.post('/', function(req, res, next) {
 
     var channel = parts[1];
     var emoji = parts[2];
-    var username = parts[4];
-    var message = parts[5];
+    var username = parts[4].trim();
+    var message = parts[5].trim();
 
     var response = true;
 
@@ -68,7 +68,7 @@ router.post('/', function(req, res, next) {
     };
 
     if (emoji){
-        doc.icon_emoji = emoji;
+        doc.icon_emoji = emoji.trim();
     } else if (_.has(avatars, username)){
         if (avatars[username].type ==="url" ){
             doc.icon_url = avatars[username].path;
