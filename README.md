@@ -15,23 +15,25 @@ $ heroku apps:create [appname]
 ```
 
 In Slack integrations, add a Slash command with the following settings:
-| Field | Value |
-| ------- | ------ |
-| Command | /npc |
-| URL | https://<appname>.herokuapp.com |
-| Method | POST |
-| Customize Name | npc |
-| Customze Icon | :speech-bubble: |
-| Autocomplete Help text >  Description | Posts as an NPC to a channel |
-| Autocomplete Help text >  Usage Hint | [#channel] [:emoji:] <username> <message> |
+ Field | Value
+--- | ---
+Command | /npc
+URL | https://<appname>.herokuapp.com
+Method | POST
+Customize Name | npc
+Customze Icon | :speech-bubble:
+Autocomplete Help text >  Description | Posts as an NPC to a channel
+Autocomplete Help text >  Usage Hint | [#channel] [:emoji:] <username> <message>
 
 Save the generated Token as a Heroku environment variable:
     `heroku config:set INCOMING_SLACK_TOKEN=XXX`
 
 In Slack Integrations, add an Incoming WebHook, setting the default icon to what you would like, and save the Webhook URL as an Heroku environment variable:
-    
-    `heroku config:set INCOMING_SLACK_WEBHOOK=https://hooks.slack.com/services/BLAH/BLAH/BLAH`
+``` 
+$ heroku config:set INCOMING_SLACK_WEBHOOK=https://hooks.slack.com/services/BLAH/BLAH/BLAH
+```
 
 Deploy to heroku.
-
-    `git push heroku master`
+```
+$ git push heroku master
+```
