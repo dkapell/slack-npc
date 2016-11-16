@@ -15,7 +15,8 @@ $ heroku apps:create [appname]
 ```
 
 In Slack integrations, add a Slash command with the following settings:
- Field | Value
+
+Field | Value
 --- | ---
 Command | /npc
 URL | https://<appname>.herokuapp.com
