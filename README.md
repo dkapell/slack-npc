@@ -3,6 +3,7 @@ A Slack bot, designed to run on Heroku, that provides the /npc command for runni
 
 ## Usage
 `/npc` - Display a list of NPCs that have set avatars
+
 `/npc <#channel> <:emoji:> [Name] [Message]` - send message as name (use quotes for multi-word names) to channel (current channel if unspecified), using the optional emoji as the user icon, or the defined user icon for that name
 
 ## Instalation
