@@ -41,7 +41,7 @@ router.post('/', function(req, res, next) {
         });
     }
 
-    var parts = text.match(/([@#][^\s]+\s+)?(['"]?)(.+?)\2\s+(.+)/);
+    var parts = text.match(/([@#][^\s]+\s+)?(:.+?:\s+)?(['"]?)(.+?)\3\s+(.+)/);
     if (! parts){
         return res.json({
             "response_type": "ephemeral",
@@ -50,8 +50,9 @@ router.post('/', function(req, res, next) {
     }
 
     var channel = parts[1];
-    var username = parts[3];
-    var message = parts[4];
+    var emoji = parts[2];
+    var username = parts[4];
+    var message = parts[5];
 
     var response = true;
 
@@ -66,7 +67,9 @@ router.post('/', function(req, res, next) {
         channel: channel.trim()
     };
 
-    if (_.has(avatars, username)){
+    if (emoji){
+        doc.icon_emoji = emoji;
+    } else if (_.has(avatars, username)){
         if (avatars[username].type ==="url" ){
             doc.icon_url = avatars[username].path;
         } else if (avatars[username].type ==="emoji" ){
