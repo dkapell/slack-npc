@@ -19,12 +19,12 @@ In Slack integrations, add a Slash command with the following settings:
 Field | Value
 --- | ---
 Command | /npc
-URL | https://<appname>.herokuapp.com
+URL | https://&gt;appname&lt;.herokuapp.com
 Method | POST
 Customize Name | npc
 Customze Icon | :speech-bubble:
-Autocomplete Help text >  Description | Posts as an NPC to a channel
-Autocomplete Help text >  Usage Hint | [#channel] [:emoji:] <username> <message>
+Autocomplete Help text &lt;  Description | Posts as an NPC to a channel
+Autocomplete Help text &lt;  Usage Hint | [#channel] [:emoji:] &gt;username&lt; &gt;message&lt;
 
 Save the generated Token as a Heroku environment variable:
     `heroku config:set INCOMING_SLACK_TOKEN=XXX`
