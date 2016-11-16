@@ -8,10 +8,10 @@ A Slack bot, designed to run on Heroku, that provides the /npc command for runni
 
 ## Customization
 ### Whitelist
-update data/users.json to set who can use the application
+Update data/users.json to set who can use the application.  The file must be a valid JSON array
 
 ### Avatars
-update data/avatars.json to set avatars, either URL or Emoji, for known NPCs.  Any NPC message that uses a name from that list, and does not specify an emoji as part of the command, will use the value specified here for its avatar
+Update data/avatars.json to set avatars, either URL or Emoji, for known NPCs.  Any NPC message that uses a name from that list, and does not specify an emoji as part of the command, will use the value specified here for its avatar.  The file must me a valid JSON object
 
 ## Installation
 
