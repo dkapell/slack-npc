@@ -30,7 +30,7 @@ router.post('/', function(req, res, next) {
     if (_.indexOf(users, user) === -1){
         return res.json({
             "response_type": "ephemeral",
-            "text": "Sorry, you are not authorized to use this command";
+            "text": "Sorry, you are not authorized to use this command"
         });
     }
 
