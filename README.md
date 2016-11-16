@@ -13,7 +13,7 @@ update data/users.json to set who can use the application
 ### Avatars
 update data/avatars.json to set avatars, either URL or Emoji, for known NPCs.  Any NPC message that uses a name from that list, and does not specify an emoji as part of the command, will use the value specified here for its avatar
 
-## Instalation
+## Installation
 
 Clone this repository, create a new heroku app
 ```
