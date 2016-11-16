@@ -76,7 +76,6 @@ router.post('/', function(req, res, next) {
             doc.icon_emoji = avatars[username].icon;
         }
     }
-    console.log(JSON.stringify(doc, null, 2));
 
     slack.notify(doc, function(err){
         if (err){
