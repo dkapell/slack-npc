@@ -28,9 +28,10 @@ router.post('/', function(req, res, next) {
     }
 
     if (_.indexOf(users, user) === -1){
-        console.log('user ' + user + ' unauthorized');
-    } else {
-        console.log('user ' + user + ' authorized');
+        return res.json({
+            "response_type": "ephemeral",
+            "text": "Sorry, you are not authorized to use this command";
+        });
     }
 
     if (!text){
